@@ -24,7 +24,7 @@ repository and configure it for collaboration:
   - Require a code review for PRs to `main`/`master`
     ([owanateamachree](https://owanateamachree.medium.com/how-to-protect-the-master-branch-on-github-ab85e9b6b03),
     [github docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/approving-a-pull-request-with-required-reviews))
-    - You will need to type `master` into the _Branch name pattern_ input box.
+    - You will need to type `master` into the _Branch name pattern_ input box.  
       (or type `main` if you have changed your default branch)
   - Select these settings to protect matching branches:
     - _Require approvals_
@@ -35,5 +35,5 @@ repository and configure it for collaboration:
 
 ## README
 
-Write the [main README](../../README.md) for your repository! You can always
+Write the [main README](../../README.md) for your repository! You can always  
 update it as you learn more about code review and collaboration on GitHub.
