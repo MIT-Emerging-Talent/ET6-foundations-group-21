@@ -1,8 +1,8 @@
 # Repository Setup
 
-Before diving into your project make sure your team has all the practical things  
-in place. This step isn't very hard but everything will go more smoothly if you  
-take the time to do this correctly at the beginning.
+Before diving into your project make sure your team has all the practical   
+things in place. This step isn't very hard but everything will go more  
+smoothly if you take the time to do this correctly at the beginning.
 
 ## Setup and Share a Repository
 
