@@ -1,13 +1,11 @@
-#! /usr/bin/env/ python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 Welcome to WIT International Bank.
-This program is designed to operate the ATM system, allowing users to perform
-various banking transactions such as checking their account balance, depositing cash,
-withdrawing money, and managing their accounts securely.
+This program operates the ATM system, allowing users to perform various banking transactions,
+including checking their balance, depositing cash, and withdrawing money securely.
 
 Thank you for choosing WIT International Bank. Your satisfaction is our priority.
-
 Created on: 2025/01/02
 By: Fikremichael Mamo
 """
@@ -19,6 +17,9 @@ def show_balance(balance):
 
     Parameters:
         balance (float): The current balance in the user's account.
+
+    Returns:
+        str: A formatted string showing the balance.
     """
     return f"Your Balance is ${balance:.2f}"
 
@@ -32,12 +33,12 @@ def deposit(balance, amount):
         amount (float): The amount to deposit.
 
     Returns:
-        float: The updated balance after deposit.
+        float: The updated balance after the deposit.
+        str: An error message if the amount is invalid.
     """
-    if amount < 0:
-        return balance
-    else:
-        return balance + amount
+    if not isinstance(amount, (float, int)) or amount <= 0:
+        return balance, "Invalid amount! Please enter a positive number."
+    return balance + amount, "Deposit successful."
 
 
 def withdraw(balance, amount):
@@ -49,16 +50,14 @@ def withdraw(balance, amount):
         amount (float): The amount to withdraw.
 
     Returns:
-        float: The updated balance after withdrawal, or the original balance if the operation is invalid.
+        float: The updated balance after withdrawal.
+        str: An error message if the operation is invalid.
     """
     if amount > balance:
-        print("Invalid amount! Insufficient balance.")
-        return balance
+        return balance, "Insufficient balance."
     elif amount <= 0:
-        print("Amount must be greater than 0.")
-        return balance
-    else:
-        return balance - amount
+        return balance, "Amount must be greater than 0."
+    return balance - amount, "Withdrawal successful."
 
 
 def main():
@@ -68,10 +67,9 @@ def main():
     Allows the user to perform actions such as checking balance, depositing funds,
     withdrawing funds, or exiting the system. Repeats until the user chooses to exit.
     """
-    balance = 0
-    is_running = True
+    balance = 0.0
 
-    while is_running:
+    while True:
         print("\nWIT ATM MENU!")
         print("1. Show Balance")
         print("2. Deposit")
@@ -86,26 +84,27 @@ def main():
             elif choice == 2:
                 try:
                     amount = float(input("Enter an amount to deposit: "))
-                    balance = deposit(balance, amount)
+                    balance, message = deposit(balance, amount)
+                    print(message)
                 except ValueError:
                     print("Invalid input! Please enter a numerical value.")
             elif choice == 3:
                 try:
                     amount = float(input("Enter an amount to withdraw: "))
-                    balance = withdraw(balance, amount)
+                    balance, message = withdraw(balance, amount)
+                    print(message)
                 except ValueError:
                     print("Invalid input! Please enter a numerical value.")
             elif choice == 4:
-                is_running = False
+                print(
+                    "Thank you for choosing WIT International Bank.\nThe Bank that you can always rely on."
+                )
+                break
             else:
-                return "That is not a valid choice."
+                print("That is not a valid choice.")
 
         except ValueError:
             print("Invalid input! Please enter a number between 1 and 4.")
-
-    print(
-        "Thank you for choosing WIT International Bank.\nThe Bank that you can always rely on."
-    )
 
 
 if __name__ == "__main__":
