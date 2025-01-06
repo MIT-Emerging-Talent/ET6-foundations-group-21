@@ -12,9 +12,9 @@ from ..atm import show_balance, deposit, withdraw
 """
     Unit tests for ATM functions: show_balance, deposit, and withdraw.
 """
-class TestATMFunctions(unittest.TestCase):
-   
 
+
+class TestATMFunctions(unittest.TestCase):
     def test_show_balance(self):
         """
         Test that show_balance correctly formats and returns the account balance.
@@ -27,8 +27,12 @@ class TestATMFunctions(unittest.TestCase):
         Test that deposit correctly updates the balance and handles invalid inputs.
         """
         self.assertEqual(deposit(100, 50), (150, "Deposit successful."))
-        self.assertEqual(deposit(100, -10), (100, "Invalid amount! Please enter a positive number."))
-        self.assertEqual(deposit(100, 0), (100, "Invalid amount! Please enter a positive number."))
+        self.assertEqual(
+            deposit(100, -10), (100, "Invalid amount! Please enter a positive number.")
+        )
+        self.assertEqual(
+            deposit(100, 0), (100, "Invalid amount! Please enter a positive number.")
+        )
 
     def test_withdraw(self):
         """
