@@ -1,10 +1,7 @@
-#! /usr/bin/env/ python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 """
-Unit test for ATM system functions.
-Tests deposit, withdraw, and show_balance functionalities.
-
+Unit test for the ATM
 Created on: 2025/01/02
 By: Fikremichael Mamo
 """
@@ -12,53 +9,35 @@ By: Fikremichael Mamo
 import unittest
 from ..atm import show_balance, deposit, withdraw
 
-
-class TestATM(unittest.TestCase):
-    """
-    Unit test class for ATM functions.
-
-    Contains test cases to validate the functionality of the deposit, withdraw,
-    and show_balance functions under various conditions.
-    """
+"""
+    Unit tests for ATM functions: show_balance, deposit, and withdraw.
+"""
+class TestATMFunctions(unittest.TestCase):
+   
 
     def test_show_balance(self):
         """
-        Test the show_balance function to ensure it executes without raising exceptions.
+        Test that show_balance correctly formats and returns the account balance.
         """
-        try:
-            show_balance(100.50)
-        except Exception as e:
-            self.fail(f"show_balance raised an exception: {e}")
+        self.assertEqual(show_balance(100.50), "Your Balance is $100.50")
+        self.assertEqual(show_balance(0), "Your Balance is $0.00")
 
-    def test_deposit_valid_amount(self):
+    def test_deposit(self):
         """
-        Test the deposit function with a valid amount to ensure the balance is updated correctly.
+        Test that deposit correctly updates the balance and handles invalid inputs.
         """
-        self.assertEqual(deposit(100, 50), 150)
+        self.assertEqual(deposit(100, 50), (150, "Deposit successful."))
+        self.assertEqual(deposit(100, -10), (100, "Invalid amount! Please enter a positive number."))
+        self.assertEqual(deposit(100, 0), (100, "Invalid amount! Please enter a positive number."))
 
-    def test_deposit_invalid_amount(self):
+    def test_withdraw(self):
         """
-        Test the deposit function with an invalid (negative) amount to ensure the balance remains unchanged.
+        Test that withdraw correctly updates the balance and handles invalid and insufficient funds.
         """
-        self.assertEqual(deposit(100, -20), 100)
-
-    def test_withdraw_valid_amount(self):
-        """
-        Test the withdraw function with a valid amount to ensure the balance is updated correctly.
-        """
-        self.assertEqual(withdraw(100, 50), 50)
-
-    def test_withdraw_insufficient_balance(self):
-        """
-        Test the withdraw function with an amount greater than the balance to ensure the balance remains unchanged.
-        """
-        self.assertEqual(withdraw(100, 150), 100)
-
-    def test_withdraw_negative_amount(self):
-        """
-        Test the withdraw function with a negative amount to ensure the balance remains unchanged.
-        """
-        self.assertEqual(withdraw(100, -20), 100)
+        self.assertEqual(withdraw(100, 50), (50, "Withdrawal successful."))
+        self.assertEqual(withdraw(100, 150), (100, "Insufficient balance."))
+        self.assertEqual(withdraw(100, -10), (100, "Amount must be greater than 0."))
+        self.assertEqual(withdraw(100, 0), (100, "Amount must be greater than 0."))
 
 
 if __name__ == "__main__":
