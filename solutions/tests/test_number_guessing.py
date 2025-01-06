@@ -8,7 +8,7 @@ Created on: 2025/01/06
 """
 
 import unittest
-from ..number_guessingnumber_guessing import (
+from ..number_guessing import (
     play_game,
 )  # Replace `number_guessing` with the actual filename where the game is defined.
 
