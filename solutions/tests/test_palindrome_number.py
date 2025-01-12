@@ -6,7 +6,6 @@ Created on 11/01/2025
 """
 
 import unittest
-
 from solutions.palindrome_number import is_palindrome_number
 
 
