@@ -6,11 +6,11 @@ Created on 11/01/2025
 """
 
 import unittest
-from solutions.palindrome_number import is_palindrome_number
 
+from solutions.Palindrome_Number import is_Palindrome_Number
 
 class TestPalindromeNumber(unittest.TestCase):
-    """Test the is_palindrome_number function"""
+    """Test the is_Palindrome_Number function"""
 
     def test_palindrome_number(self):
         """Should return True for a number that is a palindrome"""
